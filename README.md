@@ -92,11 +92,21 @@ During the demonstration, several simple input patterns representing basic funct
 ## Sprint Review #1
 
 ### Last week's progress
-
+We have CAD'd most of the model for the project and ordered all the components we need. We finalized which components we wanted to go with, including picking which motors to use and deciding which components in Detkin we can use and which components we want to order. We have finalized the CAD design for the wheel and for the connectors between the frame and the rods. We have begun laser cutting and are planning on finishing assembly physically integrate our electronic components into the design next week. We still need to figure out how to add wheels to the chassis that the plate spins on and how to connect the rotary encoder to the follower wheel and shaftf, so those will be mechanical challenges we need to figure out next week.
+![cad model](cadmodel.png)
+![parts we cut](sprint1parts.jpeg)
 ### Current state of project
-
+We have a pretty solid foundation for this project. We understand how it works mechanically, which parts should be connected to one another, and how we want to integrate electronics. We have all parts purchsed, and at this point we just need to focus on finishing the mechanical parts and assembly as soon as possible so we can focus on hardware.
 ### Next week's plan
-
+Finishing printing and assembly, create a plan for how we are physically going to wire up our components, and create system diagrams for our code so we can integrate everything completely the week after.
+| Assignee | Task | Estimated time | Finished when... |
+| ---------| -----|--------------- | ---------------- |
+| Nevan  | CAD and print the chassis | Two hours | The chassis is printed |
+| Sebastian  | Connector between rotary encoder and follower shaft wheel | Two hours | Connector is printed and glued to rotary encoder and shaft |
+| Anjali | Connect follower wheel to shaft to bearings to rotary encoder | 1 hour | Entire top piece is connected |
+| Nevan | CAD and print base | Two hours | Base is printed |
+| Anjali | CAD and print wheels | Two hours | Wheels are printed and connected to chassis as well as track |
+| Sebastian | Final assembly | Two hours | Connect all pieces together, motors are placed in correct location |
 ## Sprint Review #2
 
 ### Last week's progress
