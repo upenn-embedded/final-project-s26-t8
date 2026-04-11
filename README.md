@@ -110,11 +110,19 @@ Finishing printing and assembly, create a plan for how we are physically going t
 ## Sprint Review #2
 
 ### Last week's progress
-
+We completely finished CADing and have most of the parts printed! Most of our electronics have come in as well so we have begun to write code as well as assemble.
 ### Current state of project
-
+We have code for the rotary encoder that tells you the correct integral value, and most of the components assembled together, we just need the frame.
 ### Next week's plan
-
+Finishing coding is top priority, then work on assembly!
+| Assignee | Task | Estimated time | Finished when... |
+| ---------| -----|--------------- | ---------------- |
+| Nevan  | print the frame | one hour | The frame is printed/ made sure all componenets are correct sizes/fit |
+| Sebastian  | assemble the frame | two hours | mechanical frame is fully complete |
+| Anjali | integrate electronics  | 2 hour | all electronics are in the frame |
+| Nevan | code the big stepper motor/y axis | five hours | the rod moves in tandem with the y axis of a function |
+| Anjali | code the time/constant plate, integrate all code together | five hours | all code is complete |
+| Sebastian | final integration | five hours | Connect all pieces together, motors are placed in correct location, fully integrated together |
 ## MVP Demo
 
 ## Final Report
