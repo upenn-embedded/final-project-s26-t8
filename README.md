@@ -111,6 +111,7 @@ Finishing printing and assembly, create a plan for how we are physically going t
 
 ### Last week's progress
 We completely finished CADing and have most of the parts printed! Most of our electronics have come in as well so we have begun to write code as well as assemble.
+![output from encoder](encoderoutput.jpg)
 ### Current state of project
 We have code for the rotary encoder that tells you the correct integral value, and most of the components assembled together, we just need the frame.
 ### Next week's plan
