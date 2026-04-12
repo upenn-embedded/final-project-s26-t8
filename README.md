@@ -110,20 +110,22 @@ Finishing printing and assembly, create a plan for how we are physically going t
 ## Sprint Review #2
 
 ### Last week's progress
-We completely finished CADing and have most of the parts printed! Most of our electronics have come in as well so we have begun to write code as well as assemble.
+We completely finished CADing and most of our parts are printed. We had to alter tolerances because we made some of them too tight, so we are currently just waiting on those last parts to print. Most of our electronics have come in as well so we have begun to write code as well as assemble. We are splitting each of the components into separate code segments and then planning on integrating all the code together. The code for the follower wheel encoder, which actually calculates the integral, is complete. 
 ![output from encoder](encoderoutput.jpg)
+![circuit with rotary encoder](rotaryencodercircuit.jpeg)
 ### Current state of project
-We have code for the rotary encoder that tells you the correct integral value, and most of the components assembled together, we just need the frame.
+We have code for the rotary encoder that tells you the correct integral value, and most of the components assembled together, we just need to add them to the frame.
 ### Next week's plan
-Finishing coding is top priority, then work on assembly!
+Finishing coding is top priority, then working on assembly. There are lag times in getting our mechanical parts finished, but since we have the motors and drivers we need, we can work on writing code in the meantime to make integration go smoother. Because the mechanical aspect of this project is taking longer than expected, we are focusing on getting the integral to work with a manual function input, and then will add user input the following week.
 | Assignee | Task | Estimated time | Finished when... |
 | ---------| -----|--------------- | ---------------- |
 | Nevan  | print the frame | one hour | The frame is printed/ made sure all componenets are correct sizes/fit |
-| Sebastian  | assemble the frame | two hours | mechanical frame is fully complete |
+| Sebastian  | assemble the frame | two hours | mechanical frame is fully complete with all separate components |
 | Anjali | integrate electronics  | 2 hour | all electronics are in the frame |
 | Nevan | code the big stepper motor/y axis | five hours | the rod moves in tandem with the y axis of a function |
 | Anjali | code the time/constant plate, integrate all code together | five hours | all code is complete |
 | Sebastian | final integration | five hours | Connect all pieces together, motors are placed in correct location, fully integrated together |
+| Nevan | Code LCD Screen output | two hours | LCD properly displays what integral value we want it to |
 ## MVP Demo
 
 ## Final Report
