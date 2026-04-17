@@ -65,7 +65,7 @@ Follower: the small wheel attached to a rod that spins as a result of the plate 
 | Encoder Input Hardware | The system will include a rotary encoder connected to track output integral values. |
 | Disk Rotation | There will be a DC motor-driven rotating plate mechanism that rotates at constant speed to represent time |
 | DC Motor Driver | The system will include a motor driver to control the speed of the DC motor using PWM signals. |
-| Follower Position Movement | There will be a stepper motor-driven mechanism that adjusts the location of the chassis based on the input function |
+| Stepper motor function input | There will be a stepper motor-driven mechanism that adjusts the location of the chassis based on the input function |
 | Stepper Motor Driver | The system will include a stepper motor driver to provide precise position control via step and direction signals from the microcontroller. |
 | Output Shaft Sensing | The system will include a rotary encoder mechanically coupled to the output shaft so that shaft rotation can be measured electronically. |
 | Display Hardware | The system will have an LCD display connected through I2C to present system information to the user during operation. |
