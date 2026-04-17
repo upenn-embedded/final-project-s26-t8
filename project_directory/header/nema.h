@@ -19,31 +19,14 @@
  * TERMS. 
  */
 
-#ifndef MOTOR_H
-#define MOTOR_H
+#ifndef NEMA_H
+#define NEMA_H
 
 #include <stdint.h>
 
-extern volatile int32_t motor_position;
-
 void motor_init(void);
-void motor_set_direction(uint8_t dir);
 void motor_step(void);
-void motor_delay(uint16_t us);
-uint16_t motor_compute_delay(int16_t speed);
-void motor_set_position(int32_t pos);
-float motor_get_y(void);
-uint8_t motor_can_step(int16_t speed);
-
-int32_t motor_get_min_steps(void);
-int32_t motor_get_max_steps(void);
 uint8_t motor_get_direction(void);
-
-void motor_step_slow(void);
-
-void motor_step_precision(void);
-
-void motor_step_responsive(uint16_t delay);
-
+void motor_set_direction(uint8_t dir);
 
 #endif
