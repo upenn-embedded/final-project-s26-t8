@@ -136,7 +136,7 @@ Finishing coding is top priority, then working on assembly. There are lag times 
 | Sebastian | final integration | five hours | Connect all pieces together, motors are placed in correct location, fully integrated together |
 | Nevan | Code LCD Screen output | two hours | LCD properly displays what integral value we want it to |
 ## MVP Demo
-
+[Slide deck](https://docs.google.com/presentation/d/1c26fR2l8V-HrHxDpfWXI8LoWvZEP7CJ0bPEYAke9Whs/edit?usp=sharing)
 ## Final Report
 
 Don't forget to make the GitHub pages public website!
