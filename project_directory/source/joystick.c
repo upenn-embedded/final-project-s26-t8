@@ -1,11 +1,13 @@
 #include "joystick.h"
 #include "adc.h"
+#include "nema.h"
 
 // ===== JOYSTICK TUNING =====
-#define JOYSTICK_CENTER 512
+#define JOYSTICK_CENTER   512
 #define JOYSTICK_DEADZONE 50
 
-int16_t joystick_get_speed(void) {
+int16_t
+joystick_get_speed(void) {
     uint16_t val = adc_read(1);
 
     int16_t diff = val - JOYSTICK_CENTER;
@@ -16,7 +18,8 @@ int16_t joystick_get_speed(void) {
     return diff;
 }
 
-uint16_t joystick_apply_direction(int16_t *speed) {
+uint16_t
+joystick_apply_direction(int16_t *speed) {
     if (*speed > 0) {
         motor_set_direction(1);
         return *speed;
