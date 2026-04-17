@@ -45,8 +45,7 @@ Here, you will define any special terms, acronyms, or abbreviations you plan to 
 | DC Motor Control Logic | The system will adjust DC motor speed and direction using PWM signals to maintain consistent disk rotation. |
 | Timing Control | The system will use hardware timers to maintain a fixed sampling rate for integration and motor updates. |
 | Display Software | The system will update the LCD via I2C to display input values, output values, and system status in real time. |
-| Safety Limits | The system will enforce limits on motor commands and integrated values to prevent mechanical or electrical damage. |
-| System Initialization | The system will initialize all peripherals (ADC, PWM, I2C, interrupts) on startup before entering the main control loop. |
+
 
 ### 6. Hardware Requirements Specification (HRS)
 
