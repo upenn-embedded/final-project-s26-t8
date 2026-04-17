@@ -37,11 +37,15 @@ Here, you will define any special terms, acronyms, or abbreviations you plan to 
 
 | ID     | Description                                                                                                                                                                                                              |
 | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Analog Input Sampling | The IMU 3-axis acceleration will be measured with 16-bit depth every 100 milliseconds +/-10 milliseconds|
-| Constant Disk Motor Control | The software shall drive the disk motor at a constant speed using PWM control.|
-| Follower position | The software should drive the stepper motor to move the follower mechanism according to the input value from the slider potentiometer. We can test this by setting several known slider positions and checking that the follower moves to the expected corresponding positions. |
-| Output measurement | The software should read pulses from the rotary encoder using interrupts in order to track the output shaft rotation in real time. We’ll test this by rotating the output shaft by a known amount and checking that the encoder count changes by the expected amount. |
-| LCD Display | The software should update the LCD display and serial plotter in real time to show the current input value and the accumulated output of the integrator. |
+| PWM Control | The system will generate PWM signals from the microcontroller to control motor speeds smoothly and efficiently. |
+| Analog Input Processing | The system will read and process analog signals from the potentiometer using the onboard ADC to determine input magnitude. |
+| Encoder Processing | The system will decode signals from the rotary encoder to track position and direction. |
+| Integration Computation | The system will keep track of rotary encoder input and sum values to calculate integral |
+| Stepper Control Logic | The system will generate step and direction signals to control the stepper motor position based on the input function |
+| DC Motor Control Logic | The system will adjust DC motor speed and direction using PWM signals to maintain consistent disk rotation. |
+| Timing Control | The system will use hardware timers to maintain a fixed sampling rate for integration and motor updates. |
+| Display Software | The system will update the LCD via I2C to display input values, output values, and system status in real time. |
+
 
 ### 6. Hardware Requirements Specification (HRS)
 
@@ -55,11 +59,16 @@ Follower: the small wheel attached to a rod that spins as a result of the plate 
 
 | ID     | Description                                                                                                                        |
 | ------ | ---------------------------------------------------------------------------------------------------------------------------------- |
+| Power Supply Hardware | The system should include a 9 V battery and a buck converter to provide a stable 5 V supply to all electronic components. |
+| Microcontroller Unit | The system will use an ATmega328P microcontroller to coordinate sensing, computation, and motor control. |
 | User Input Hardware | The system should include a slider potentiometer that allows the user to manually define the input to the integrator. |
-| Disk rotation | There will be a motor-driven rotating disk that provides the time base for the mechanical integrator.|
-| Follower position movement |  There will be a motorized follower-position mechanism that adjusts the follower location based on the user input. We will test this by making the mechanism move to multiple positions and verifying it moves to those correct positions. |
+| Encoder Input Hardware | The system will include a rotary encoder connected to track output integral values. |
+| Disk Rotation | There will be a DC motor-driven rotating plate mechanism that rotates at constant speed to represent time |
+| DC Motor Driver | The system will include a motor driver to control the speed of the DC motor using PWM signals. |
+| Stepper motor function input | There will be a stepper motor-driven mechanism that adjusts the location of the chassis based on the input function |
+| Stepper Motor Driver | The system will include a stepper motor driver to provide precise position control via step and direction signals from the microcontroller. |
 | Output Shaft Sensing | The system will include a rotary encoder mechanically coupled to the output shaft so that shaft rotation can be measured electronically. |
-| Display Hardware |  The system will have an LCD display connected through I2C to present system information to the user during operation.|
+| Display Hardware | The system will have an LCD display connected through I2C to present system information to the user during operation. |
 
 ### 7. Bill of Materials (BOM)
 A 10k slider potentiometer will serve as the primary input as it will be used as the analog for function value over time. The potentiometer will be connected to an ADC pin on the microcontroller so that the system can read the input value.
