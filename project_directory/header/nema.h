@@ -28,5 +28,12 @@ void motor_init(void);
 void motor_step(void);
 uint8_t motor_get_direction(void);
 void motor_set_direction(uint8_t dir);
-
+void motor_update(void);
+void motor_idle(void);
+int32_t motor_get_position(void);
+void motor_handle_zeroing(void);
+void motor_handle_setting(void);
+void motor_handle_running(void);
+void motor_print_y(void);
+void motor_set_position(int32_t pos);
 #endif
