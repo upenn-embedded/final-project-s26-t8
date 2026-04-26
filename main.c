@@ -17,7 +17,6 @@
 
 #define F_CPU 16000000UL
 
-#include "time.h"
 #include "util/delay.h"
 
 /*
@@ -27,6 +26,7 @@
 
 
 #define CS_ENC PD7
+#define ENABLE_BIG PC4
 
 /*---global variables---*/
 
@@ -42,22 +42,20 @@ void init_pwm_big_step (void){
     TCCR3B |= (1<<CS32)|(1<<WGM33);//WGM 3 2 and all CSx
     TCCR3A |= (1<<COM3B1)|(1<<WGM30); //COM3Ax COM3Bx WGM 1 0
     DDRD |= (1<<PD2);
-    DDRC |= (1<<PC5);
+    DDRC |= (1<<PC5)|(1<<PC4);
     PORTD |= (1<<PD2);
 }
 
 void init_pwm_little_step (void){
-//    // I want to do OC2B and OC2A as top (mode 5) 1 0 1 or ocr2a is top and toggle on compare match?
-    TCCR2B |=(1<<CS22)|(1<<WGM22); 
-    TCCR2A |=(1<<COM2B0);
+    TCCR2B |=(1<<CS22)|(1<<WGM22)(1<<CS21); 
+    TCCR2A |=(1<<COM2B1)|(1<<WGM20);
     DDRD |= (1<<PD3); 
-    OCR2A = 100;
 }
 
 void init_interrupt_encoder(void){
-    TCCR2B |= (1<<CS22)|(1<<CS21)|(1<<CS20); // prescaler of 1024
-    TCCR2A |= (1<<WGM21); // CTC mode
-    TIMSK2 |= (1<<OCIE2A);
+    TCCR1B |= (1<<CS12)|(1<<CS10)|(1<<WGM12); // prescaler of 1024
+    TIMSK1 |= (1<<OCIE1A);
+	OCR1A = 255;
 }
 
 void init_LCD(void){
@@ -140,7 +138,7 @@ uint16_t integral_calc_and_return_position(int16_t* integral, uint16_t prevposit
        
     uint16_t position = encoder_position();
     
-    int16_t limit = 3000;
+    int16_t limit = 2000;
 
     // calculate step size
     int16_t dx = position - prevposition;
@@ -161,10 +159,13 @@ uint16_t integral_calc_and_return_position(int16_t* integral, uint16_t prevposit
 
 int main(int argc, char** argv) {
     
-    uart_init();
+    _delay_ms(5000);
+	uart_init();
     init_pwm_big_step();
     init_pwm_little_step();
+	_delay_ms(1000);
     init_LCD();
+	_delay_ms(1000);
     init_encoder();
     init_interrupt_encoder();
     init_slider();
@@ -176,12 +177,12 @@ int main(int argc, char** argv) {
     
     
     //  registers for lil stepper
-    OCR2A = 255;
-    OCR2B = 0;
+    OCR2A = 128;
+    OCR2B = 64;
     
     /*--- variables for LCD ---*/
-    int dx = 2; // step size of graphed integral
-    uint8_t factor = 50;
+    int dx = 1; // step size of graphed integral
+    uint8_t factor = 32;
     int count = LCD_WIDTH/dx; // number of steps required
     char buffer[10]; // buffer to keep track of integral value
     int prev = 60; //last value of integral
@@ -209,7 +210,9 @@ int main(int argc, char** argv) {
             
         }
         // set LCD white? or have an array of the last few integrals and just always erase those? smarter and 
-            LCD_setScreen(0xFFFF);
+            shared_integral = 0;
+        	prev = shared_integral;
+			LCD_setScreen(0xFFFF);
             LCD_drawLine(0,LCD_HEIGHT/2,LCD_WIDTH, LCD_HEIGHT/2, 0x0000);
 
 
@@ -219,11 +222,11 @@ int main(int argc, char** argv) {
 
 
 
-ISR(TIMER2_COMPA_vect, ISR_BLOCK){
+ISR(TIMER1_COMPA_vect, ISR_BLOCK){
     shared_position = integral_calc_and_return_position(&shared_integral, shared_position);
     if(global_ADC != ADC){
         global_ADC = ADC;
-        if(global_ADC<488){
+        if(global_ADC<480){
             //direction change
            
             PORTC |=(1<<PC5);
@@ -231,7 +234,7 @@ ISR(TIMER2_COMPA_vect, ISR_BLOCK){
             OCR3A = OCR3B*2;
             
         }
-        else if(global_ADC>536){
+        else if(global_ADC>544){
           
             PORTC &= ~(1<<PC5);
             OCR3B = (1024 - global_ADC)/10 + 10;
