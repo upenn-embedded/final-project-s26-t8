@@ -13,7 +13,7 @@
 
 **GitHub Repository URL: https://github.com/upenn-embedded/final-project-s26-t8**
 
-**GitHub Pages Website URL:** [for final submission]*
+**GitHub Pages Website URL:**(https://upenn-embedded.github.io/final-project-s26-t8/)*
 
 ## Final Project Proposal
 
