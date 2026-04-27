@@ -32,6 +32,6 @@
 #include <stdint.h>
 
 int16_t joystick_get_speed(void);
-uint16_t joystick_apply_direction(int16_t *speed);
+uint16_t joystick_get_direction(int16_t speed);
 
 #endif
