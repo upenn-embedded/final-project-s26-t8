@@ -11,9 +11,9 @@
 | Nevan Sujit         | tsnevan@seas.upenn.edu          |
 | Sebastian William Thomann Studholme         | sthomann@seas.upenn.edu           |
 
-**GitHub Repository URL:** (https://github.com/upenn-embedded/final-project-s26-t8)*
+**GitHub Repository URL:** https://github.com/upenn-embedded/final-project-s26-t8
 
-**GitHub Pages Website URL:**(https://upenn-embedded.github.io/final-project-s26-t8/)*
+**GitHub Pages Website URL:** https://upenn-embedded.github.io/final-project-s26-t8/
 
 ## Final Project Proposal
 
