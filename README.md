@@ -2,17 +2,17 @@
 
 **Team Number: 8**
 
-**Team Name: Integr8**
+**Team Name: Integr8!**
 
 | Team Member Name | Email Address       |
 |------------------|---------------------|
-| Anjali Kalanidhi         | anjk@seas.upenn.edu           |
-| Nevan Sujit         | tsnevan@seas.upenn.edu          |
-| Sebastian William Thomann Studholme         | sthomann@seas.upenn.edu           |
+| Anjali Kalanidhi         | [anjk@seas.upenn.edu](anjk@seas.upenn.edu)           |
+| Nevan Sujit         | [tsnevan@seas.upenn.edu](tsnevan@seas.upenn.edu)          |
+| Sebastian William Thomann Studholme         | [sthomann@seas.upenn.edu](sthomann@seas.upenn.edu)           |
 
-**GitHub Repository URL:** https://github.com/upenn-embedded/final-project-s26-t8
+**GitHub Repository URL:** [https://github.com/upenn-embedded/final-project-s26-t8](https://github.com/upenn-embedded/final-project-s26-t8)
 
-**GitHub Pages Website URL:** https://upenn-embedded.github.io/final-project-s26-t8/
+**GitHub Pages Website URL:** [https://upenn-embedded.github.io/final-project-s26-t8/](https://upenn-embedded.github.io/final-project-s26-t8/)
 
 ## Final Report
 
