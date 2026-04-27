@@ -1,4 +1,4 @@
-# Final Project
+# Team Integr8!
 
 **Team Number: 8**
 
