@@ -1,8 +1,8 @@
-# Team Integr8!
+# Final Project
 
 **Team Number: 8**
 
-**Team Name: Integr8!**
+**Team Name: Team Integr8!**
 
 | Team Member Name | Email Address       |
 |------------------|---------------------|
