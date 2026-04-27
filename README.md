@@ -24,9 +24,9 @@ A mechanical integrator is a device that physically computes the integral of a f
 We are building our mechanical integrator to create a more computation-efficient way to solve integrals, particularly because the ATMega328P is not well-suited for computing complex mathematical problems. This project is interesting because we are building a mechanical integrator, a device that was historically used to calculate complex integrals, but updating it with the modern firmware capabilities of the ATMega to show that analog based technologies still have their merits.
 
 ### 3. System Block Diagram
-![System Block Diagram](SBD.png)
+![System Block Diagram](images\SBD.png)
 ### 4. Design Sketches
-![Sketch](sketch.png)
+![Sketch](images\sketch.png)
 ### 5. Software Requirements Specification (SRS)
 
 **5.1 Definitions, Abbreviations**
@@ -60,9 +60,7 @@ Follower: the small wheel attached to a rod that spins as a result of the plate 
 | ID     | Description                                                                                                                        |
 | ------ | ---------------------------------------------------------------------------------------------------------------------------------- |
 | Power Supply Hardware | The system should include a 9 V battery and a buck converter to provide a stable 5 V supply to all electronic components. |
-| Microcontroller Unit | The system will use an ATmega328P microcontroller to coordinate sensing, computation, and motor control. |
 | User Input Hardware | The system should include a slider potentiometer that allows the user to manually define the input to the integrator. |
-| Encoder Input Hardware | The system will include a rotary encoder connected to track output integral values. |
 | Disk Rotation | There will be a DC motor-driven rotating plate mechanism that rotates at constant speed to represent time |
 | DC Motor Driver | The system will include a motor driver to control the speed of the DC motor using PWM signals. |
 | Stepper motor function input | There will be a stepper motor-driven mechanism that adjusts the location of the chassis based on the input function |
@@ -102,8 +100,8 @@ During the demonstration, several simple input patterns representing basic funct
 
 ### Last week's progress
 We have CAD'd most of the model for the project and ordered all the components we need. We finalized which components we wanted to go with, including picking which motors to use and deciding which components in Detkin we can use and which components we want to order. We have finalized the CAD design for the wheel and for the connectors between the frame and the rods. We have begun laser cutting and are planning on finishing assembly physically integrate our electronic components into the design next week. We still need to figure out how to add wheels to the chassis that the plate spins on and how to connect the rotary encoder to the follower wheel and shaftf, so those will be mechanical challenges we need to figure out next week.
-![cad model](cadmodel.png)
-![parts we cut](sprint1parts.jpeg)
+![cad model](images\cadmodel.png)
+![parts we cut](images\sprint1parts.jpeg)
 ### Current state of project
 We have a pretty solid foundation for this project. We understand how it works mechanically, which parts should be connected to one another, and how we want to integrate electronics. We have all parts purchsed, and at this point we just need to focus on finishing the mechanical parts and assembly as soon as possible so we can focus on hardware.
 ### Next week's plan
@@ -120,8 +118,8 @@ Finishing printing and assembly, create a plan for how we are physically going t
 
 ### Last week's progress
 We completely finished CADing and most of our parts are printed. We had to alter tolerances because we made some of them too tight, so we are currently just waiting on those last parts to print. Most of our electronics have come in as well so we have begun to write code as well as assemble. We are splitting each of the components into separate code segments and then planning on integrating all the code together. The code for the follower wheel encoder, which actually calculates the integral, is complete. 
-![output from encoder](encoderoutput.jpg)
-![circuit with rotary encoder](rotaryencodercircuit.jpeg)
+![output from encoder](images\encoderoutput.jpg)
+![circuit with rotary encoder](images\rotaryencodercircuit.jpeg)
 ### Current state of project
 We have code for the rotary encoder that tells you the correct integral value, and most of the components assembled together, we just need to add them to the frame.
 ### Next week's plan
@@ -139,7 +137,7 @@ Finishing coding is top priority, then working on assembly. There are lag times 
 [Slide deck](https://docs.google.com/presentation/d/1c26fR2l8V-HrHxDpfWXI8LoWvZEP7CJ0bPEYAke9Whs/edit?usp=sharing)
 
 System block diagram:
-![System block diagram](blockdiagram.png)
+![System block diagram](images\blockdiagram.png)
 
 Hardware explanation:
 The hardware system is organized around the ATmega328P microcontroller, which serves as the central controller coordinating power, sensing, and actuation. A 24 V power supply provides the primary energy source, which is stepped down to 5 V using a buck converter to safely power the microcontroller and low-voltage peripherals. User input is provided through a joystick connected to an ADC pin. The ATMega processes this input and turns it into PWM outputs for the motors. One stepper motor (turning the plate) establishes the time base by driving the plate mechanism, while another stepper motors (the heavy duty NEMA 17) is used to represent the y axis of the function input. This movement turns the follower wheel, which turns the rotary encoder connected to digital pins (PD2/PD3) which read the angle position. The ATMega then processes this data and sums up the overall change in angle to find the total integral. An LCD display communicates with the microcontroller over I2C, enabling real-time visualization of the integral as well as its value. The system operates in a closed-loop style at the user level: the user sets an input via the potentiometer or joystick, the microcontroller processes this input and generates appropriate control signals, the motors actuate the mechanical system, and the resulting motion is observed through the encoder feedback and displayed on the LCD.
@@ -178,14 +176,28 @@ If you’ve never made a GitHub pages website before, you can follow this webpag
 
 | ID     | Description                                                                                               | Validation Outcome                                                                          |
 | ------ | --------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
-| SRS-01 | The IMU 3-axis acceleration will be measured with 16-bit depth every 100 milliseconds +/-10 milliseconds. | Confirmed, logged output from the MCU is saved to "validation" folder in GitHub repository. |
+| PWM Control | The system will generate PWM signals from the microcontroller to control motor speeds smoothly and efficiently. | Confirmed, the PWM outputs were checked via print statements and by reading an oscilloscope of the output. We had some hardware issues with this aspect, but the software worked very well. We had two different stepper motors with two different stepper motor drivers, so we had to specifically tune each code to work for each stepper motor driver, and then test and validate the PWM output coming out of each driver. FINISH VALIDATION |
+| Analog Input Processing | The system will read and process analog signals from the potentiometer using the onboard ADC to determine input magnitude. | Works  well, we were able to check what the input is through print statements within the code. Our input is through a joystick instead of potentiometer, and the input signal is also relative to the maximum y values we set (the range being -2 to 2 for the final product of this project), so there were some limitations with how accurate this input could be based on what function the user actually wishes to input, but that is more of a matter of mechanical/hardware limitations rather than software issues. |
+| Encoder Processing | The system will decode signals from the rotary encoder to track position and direction. | Works very well, we were able to confirm this is working accurately by manually measuring an angle and then using the rotary encoder and follower wheel to see if the same value is generated via print statements ![encoder validation](images\encoderoutput.jpg)|
+| Integration Computation | The system will keep track of rotary encoder input and sum values to calculate integral | Works well, we used print statements to see how the software sums up the positions over time, We estimate there is an error of up to 10% just by accounting for the inaccuracies of the wheel size and other mechanical limitations, but the software does its job properly. |
+| Stepper Control Logic | The system will generate step and direction signals to control the stepper motor position based on the input function | We printed the out the supposed location of the stepper motor and then manually checked how far the stepper motor moved the chassis to determine if the signals were correct. This process required some tuning. |
+| DC Motor Control Logic | The system will adjust DC motor speed and direction using PWM signals to maintain consistent disk rotation. | Works very well, we checked that the correct PWM signal was being generated by the software via an oscilloscope FINISH VALIDATION|
+| Timing Control | The system will use hardware timers to maintain a fixed sampling rate for integration and motor updates. | First, we attempted to use RTOS to schedule all of the tasks needed to make this system functional. However, we ran into issues with memory space on the ATMega, so we had to switch to FINISH HERE + VALIDATION? |
+| Display Software | The system will update the LCD via I2C to display input values, output values, and system status in real time. | Works well, we were simply able to validate this system works by checking the screen and ensuring that what we wanted to show up on the screen was actually showing up. Earlier on, we ran into some issues where the screen was not updating properly, or would turn blank after a certain amount of time, but we realized this was because the system did not have enough time to properly initialize, so by adding delays into our code, we were able to fix this issue. |
+
 
 #### 3.2 Hardware Requirements Specification (HRS) Results
 
 | ID     | Description                                                                                                                        | Validation Outcome                                                                                                      |
 | ------ | ---------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| HRS-01 | A distance sensor shall be used for obstacle detection. The sensor shall detect obstacles at a maximum distance of at least 10 cm. | Confirmed, sensed obstacles up to 15cm. Video in "validation" folder, shows tape measure and logged output to terminal. |
-|        |                                                                                                                                    |                                                                                                                         |
+| Power Supply Hardware | The system should include a 9 V battery and a buck converter to provide a stable 5 V supply to all electronic components. | We were unable to meet this requirement due to changes in the power requirments for the system. We initially thought our stepper motors would require 9V, but the more heavy Nema 17 motor required 24V. As a result, we were not able to order a 24V power supply in time for the demo, so we used the voltage supply for all voltages needed |
+| User Input Hardware | The system should include a slider potentiometer that allows the user to manually define the input to the integrator. | We decided to use a joystick rather than a potentiometer because we felt the fact that it allowed the user to move the chassis in real time instead of simply picking a location for the chassis to end up at improved the user experience so it was easier for them to better determine which exact spot the chassis ended up at. Using the joystick also let us include variable speeds depending on how far the joystick was pushed. This system worked correctly, as we were able to check via print statements that showed us the numerical value the system was translating this input to FINISH VALIDATION |
+| Disk Rotation | There will be a DC motor-driven rotating plate mechanism that rotates at constant speed to represent time | The disk rotation was quite easy to accomplish and validate, as we were able to use an oscilloscope to see the PWM signal, and then manually count how long it takes the disk to complete a rotation to ensure that the motor driver and motor were working properly. We ended up changing this motor from a DC motor driver to a stepper motor, as that allowed us to rotate the plate at a constant speed more easily within the software stack |
+| DC Motor Driver | The system will include a motor driver to control the speed of the DC motor using PWM signals. | Similar to the requirement above, we were able to validate that the output of this motor driver was correct with an oscilloscope, and this aspect of the project worked very well FINISH **WHICH STEPPER MOTOR BURNT OUT** |
+| Stepper motor function input | There will be a stepper motor-driven mechanism that adjusts the location of the chassis based on the input function | For the most part, this system works quite well. However, in the beginning we ran into many issues with the stepper motor stalling when we gave it power, and we spent a lot of time debugging that issue. Eventually, we realized it could be due to torque issues caused by the clamp connecting the motor to the rod it was supposed to be turning, so by loosening the rod and attaching it with glue (it could be unglued as well after use!), we were able to fix this problem. |
+| Stepper Motor Driver | The system will include a stepper motor driver to provide precise position control via step and direction signals from the microcontroller. | This system worked pretty well, though we estimated there was likely a 10% error due to mechanical issues that happened within the system after the stepper motor driver supplied the PWM signal to the motor. We checked that the correct signal was being supplied via an oscilloscope FINSIH **VALIDATE, WHICH DRIVER BURNT OUT** |
+| Output Shaft Sensing | The system will include a rotary encoder mechanically coupled to the output shaft so that shaft rotation can be measured electronically. | Using the rotary encoder worked very well, especially once we were able to solder the pins properly. We had a few mechanical issues with placing the rotary encoder so it did not move, but overall through testing and mechanical tuning we were able to ensure this process works well through print statements FINISH |
+| Display Hardware | The system will have an LCD display connected through I2C to present system information to the user during operation. | FINISH|
 
 ### 4. Conclusion
 
